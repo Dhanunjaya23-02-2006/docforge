@@ -1,0 +1,43 @@
+"use client";
+
+import { Badge } from "@/components/ui/Badge";
+
+interface PrivacyNoticeProps {
+  variant?: "inline" | "card";
+  className?: string;
+}
+
+export function PrivacyNotice({ variant = "inline", className = "" }: PrivacyNoticeProps) {
+  const content = (
+    <>
+      <p className="text-sm text-text-muted">
+        Your documents may contain sensitive information. Upload only files you are authorized to process.
+      </p>
+      <p className="mt-2 text-sm text-text-muted">
+        Files are processed on our servers and automatically deleted after processing. We do not store your documents.
+      </p>
+    </>
+  );
+
+  if (variant === "card") {
+    return (
+      <div className={`card p-4 border-border ${className || ""}`}>
+        <div className="flex items-start gap-3">
+          <svg className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <div>{content}</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 text-sm text-text-muted" role="note">
+      <svg className="h-4 w-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+      <span>Your documents may contain sensitive information. Upload only files you are authorized to process.</span>
+    </div>
+  );
+}
